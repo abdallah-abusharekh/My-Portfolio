@@ -77,19 +77,30 @@ export function Hero() {
     >
       {/* Nav spotlight */}
       <div className="top-[-11rem] left-1/2 z-0 absolute bg-[radial-gradient(ellipse_at_center,_rgba(155,194,207,0.38)_0%,_rgba(115,161,177,0.22)_32%,_rgba(71,80,89,0.08)_58%,_transparent_74%)] blur-2xl w-[min(46rem,125vw)] h-[25rem] -translate-x-1/2 pointer-events-none" />
-      <div className="top-0 left-1/2 z-0 absolute bg-[linear-gradient(180deg,_rgba(155,194,207,0.18)_0%,_rgba(115,161,177,0.11)_34%,_rgba(115,161,177,0)_78%)] [clip-path:polygon(42%_0,_58%_0,_78%_100%,_22%_100%)] blur-xl w-[min(30rem,82vw)] h-[24rem] -translate-x-1/2 pointer-events-none" />
+      <div className="top-0 left-1/2 z-0 absolute bg-[linear-gradient(180deg,_rgba(155,194,207,0.18)_0%,_rgba(115,161,177,0.11)_34%,_rgba(115,161,177,0)_78%)] blur-xl w-[min(30rem,82vw)] h-[24rem] -translate-x-1/2 pointer-events-none [clip-path:polygon(42%_0,_58%_0,_78%_100%,_22%_100%)]" />
 
       {/* Radial vignette */}
       <div className="z-10 absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_#0a0a0a_100%)] pointer-events-none" />
 
       {/* Static portrait for screens without the scroll animation */}
-      <div className="lg:hidden bottom-28 sm:bottom-32 md:bottom-24 left-1/2 z-30 absolute w-28 sm:w-36 md:w-44 aspect-square -translate-x-1/2 pointer-events-none">
-        <img
-          src="/abdallah-dark.jpg"
-          alt={profile.name}
-          className="block shadow-2xl shadow-black/40 rounded-2xl w-full h-full object-cover"
-        />
-      </div>
+      <motion.div
+        className="lg:hidden bottom-28 sm:bottom-32 md:bottom-24 z-30 absolute inset-x-0 flex justify-center pointer-events-none"
+        initial={{ opacity: 0, y: 72 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1.15,
+          delay: 0.65,
+          ease: [0.215, 0.61, 0.355, 1.0],
+        }}
+      >
+        <div className="w-28 sm:w-36 md:w-44 aspect-square">
+          <img
+            src="/abdallah-dark.jpg"
+            alt={profile.name}
+            className="block shadow-2xl shadow-black/40 rounded-2xl w-full h-full object-cover"
+          />
+        </div>
+      </motion.div>
 
       {/* Top meta */}
       <motion.div
