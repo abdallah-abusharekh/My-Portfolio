@@ -52,7 +52,11 @@ function Intro() {
           <motion.div
             initial={{ opacity: 0, y: 84 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.15, delay: 0.65, ease: [0.215, 0.61, 0.355, 1.0] }}
+            transition={{
+              duration: 1.15,
+              delay: 0.65,
+              ease: [0.215, 0.61, 0.355, 1.0],
+            }}
           >
             <motion.div
               className="relative w-28 sm:w-36 md:w-44 lg:w-[200px] aspect-square"
@@ -64,12 +68,12 @@ function Intro() {
               }}
             >
               <img
-                src="/abdallah-dark.jpg"
+                src="/abdallah-dark.webp"
                 alt={profile.name}
                 className="block absolute inset-0 shadow-2xl shadow-black/40 rounded-2xl w-full h-full object-cover [backface-visibility:hidden]"
               />
               <img
-                src="/abdallah.png"
+                src="/abdallah.webp"
                 alt={profile.name}
                 className="block absolute inset-0 shadow-2xl shadow-black/40 rounded-2xl w-full h-full object-cover [backface-visibility:hidden] [transform:rotateY(180deg)]"
               />

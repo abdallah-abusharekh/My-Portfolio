@@ -37,7 +37,7 @@ export function Contact() {
           <motion.p
             className="text-display text-white leading-none"
             initial={{ y: 100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.0, ease: [0.215, 0.61, 0.355, 1.0] }}
           >
@@ -49,7 +49,7 @@ export function Contact() {
           <motion.p
             className="text-bluegray-300 text-display leading-none"
             initial={{ y: 100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{
               duration: 1.0,
@@ -65,7 +65,7 @@ export function Contact() {
           <motion.p
             className="text-display text-teal-light leading-none"
             initial={{ y: 100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{
               duration: 1.0,

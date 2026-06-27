@@ -95,7 +95,7 @@ export function Hero() {
       >
         <div className="w-28 sm:w-36 md:w-44 aspect-square">
           <img
-            src="/abdallah-dark.jpg"
+            src="/abdallah-dark.webp"
             alt={profile.name}
             className="block shadow-2xl shadow-black/40 rounded-2xl w-full h-full object-cover"
           />
@@ -123,7 +123,7 @@ export function Hero() {
           <motion.h1
             className="text-display text-white leading-none select-none"
             style={{ y: softwareYSpring }}
-            initial={{ y: 120, opacity: 0 }}
+            initial={false}
             animate={{ y: 0, opacity: 1 }}
             transition={{
               duration: 1.0,

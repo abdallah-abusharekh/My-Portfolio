@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { profile } from "../../data/profile";
 
 const navLinks = [
@@ -70,7 +75,7 @@ export function Navbar() {
           }}
         >
           <div className="flex justify-center items-center bg-teal rounded-full w-8 h-8 font-bold text-white text-xs">
-            <img src="/logo-white.png" />
+            <img src="/logo-white.webp" alt="logo" width={30} height={30} />
           </div>
           <span className="font-semibold text-white text-sm">
             {profile.name.split(" ")[0]}
@@ -103,7 +108,9 @@ export function Navbar() {
 
           <button
             type="button"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              menuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
             className="sm:hidden flex justify-center items-center bg-bluegray-900/80 hover:bg-bluegray-800 border border-bluegray-700 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-light/70 w-9 h-9 text-bluegray-300 hover:text-white transition-colors duration-200"
@@ -142,7 +149,7 @@ export function Navbar() {
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
             >
-              <div className="grid gap-1">
+              <div className="gap-1 grid">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
