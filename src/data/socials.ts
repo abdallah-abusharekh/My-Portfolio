@@ -25,14 +25,14 @@ export const socials: Social[] = [
     id: "twitter",
     platform: "Facebook",
     handle: "@abdallah-abusharekh",
-    url: "https://facebook.com/abdullah-abusharekh",
+    url: "https://www.facebook.com/abdallah.abusharekh1",
     displayHandle: "abdallah-abusharekh",
   },
   {
     id: "readcv",
     platform: "Instagram",
     handle: "abdallah-abusharekh",
-    url: "https://instagram.com/abdallah-abusharekh",
+    url: "https://www.instagram.com/abdallah.abusharekh/",
     displayHandle: "abdallah-abusharekh",
   },
   {
