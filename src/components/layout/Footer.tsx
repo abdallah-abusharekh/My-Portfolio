@@ -4,8 +4,8 @@ import { socials } from "../../data/socials";
 import { ArrowIcon } from "../ui/ArrowIcon";
 
 const navLinks = [
-  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
@@ -52,7 +52,9 @@ export function Footer() {
                 <li key={social.id}>
                   <a
                     href={social.url}
-                    target={social.url.startsWith("mailto:") ? undefined : "_blank"}
+                    target={
+                      social.url.startsWith("mailto:") ? undefined : "_blank"
+                    }
                     rel={
                       social.url.startsWith("mailto:")
                         ? undefined
