@@ -24,7 +24,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       viewport={{ once: true, margin: "0px 0px -80px 0px" }}
       transition={{
         duration: 0.8,
-        delay: index * 0.1,
+        delay: index * 0.05,
         ease: [0.215, 0.61, 0.355, 1.0],
       }}
       className="group"
@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </motion.div>
 
       {/* Meta */}
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-3">
         <div className="min-h-[172px]">
           <div className="flex justify-between items-start gap-4 mb-2">
             <div>
@@ -100,7 +100,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           </div>
 
-          <p className="max-w-xl text-[#666] text-sm leading-relaxed">
+          <p className="max-w-xl text-[#fafafa]/80 text-sm leading-relaxed">
             {project.description}
           </p>
         </div>

@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "Academix",
     subtitle: "Multi-tenant school management & assessment platform",
     description:
-      "Co-developed a full-stack SaaS platform in a team of 3, owning the frontend architecture and leading modules for examinations, assignments, scheduling, dashboards, and role-based user flows.",
+      "SaaS platform that enables schools to manage students, teachers, classes, attendance, scheduling, examinations, assignments, and AI-assisted assessments from a single application. Designed for multiple schools with role-based experiences for administrators, teachers, students, and parents.",
     year: 2026,
     tags: [
       "NEXT.JS",
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     title: "Cure-Way",
     subtitle: "Multi-vendor pharmacy delivery platform",
     description:
-      "Contributed to a production-grade multi-vendor platform, building scalable frontend features, role-aware components, operational dashboards, and REST API integrations.",
+      "Multi-vendor pharmacy platform that connects customers with nearby pharmacies, allowing them to browse products, place orders, manage prescriptions, and track deliveries. The platform also provides operational dashboards for pharmacies and administrators to manage inventory, orders, and business operations.",
     year: 2026,
     tags: [
       "NEXT.JS",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     title: "Client Portal",
     subtitle: "Role-based SaaS project management dashboard",
     description:
-      "Designed and built a SaaS-style dashboard with role-based experiences for Admins, Freelancers, and Customers, including project tracking, tasks, analytics, and meeting scheduling.",
+      "Project management platform designed for businesses, freelancers, and clients to collaborate through project tracking, task management, meeting scheduling, team communication, and analytics dashboards.",
     year: 2025,
     tags: [
       "NEXT.JS",
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     title: "Pizzana",
     subtitle: "Pizza restaurant ordering app built with React & Redux",
     description:
-      "A full-featured restaurant site with a responsive marketing homepage, live menu display, and an ordering flow including cart management, delivery address geocoding, and user session handling - built to practice Redux state management, API integration, and component architecture with React and Tailwind CSS.",
+      "Full-featured restaurant site with a responsive marketing homepage, live menu display, and an ordering flow including cart management, delivery address geocoding, and user session handling - built to practice Redux state management, API integration, and component architecture with React and Tailwind CSS.",
     year: 2026,
     tags: ["REACT", "VITE", "REDUX", "TAILWIND CSS"],
     image: "/pizzana.webp",
