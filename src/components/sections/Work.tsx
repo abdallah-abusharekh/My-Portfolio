@@ -134,7 +134,7 @@ export function Work() {
             </motion.h2>
           </div>
           <motion.p
-            className="hidden md:block self-start mt-1 text-[#555] text-label"
+            className="hidden md:block self-start mt-1 text-[#8f8f8f] text-label"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

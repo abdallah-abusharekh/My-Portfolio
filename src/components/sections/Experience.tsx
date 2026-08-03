@@ -61,7 +61,7 @@ export function Experience() {
                   <h3 className="font-bold text-white text-xl md:text-2xl">
                     {exp.title}
                   </h3>
-                  <span className="sm:mt-1 text-[#555] text-label shrink-0">
+                  <span className="sm:mt-1 text-[#8f8f8f] text-label shrink-0">
                     {exp.period}
                   </span>
                 </div>
@@ -72,7 +72,7 @@ export function Experience() {
                 </p>
 
                 {/* Description */}
-                <p className="mb-4 max-w-2xl text-[#777] text-sm md:text-base leading-relaxed">
+                <p className="mb-4 max-w-2xl text-[#fafafa] text-sm md:text-base leading-relaxed">
                   {exp.description}
                 </p>
 
@@ -81,7 +81,7 @@ export function Experience() {
                   {exp.highlights.map((highlight, hi) => (
                     <motion.li
                       key={hi}
-                      className="flex items-start gap-3 text-[#666] text-sm"
+                      className="flex items-start gap-3 text-[#fafafa]/80 text-sm"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
@@ -90,7 +90,7 @@ export function Experience() {
                         delay: i * 0.15 + hi * 0.07 + 0.4,
                       }}
                     >
-                      <span className="mt-0.5 font-mono text-[#444] text-xs shrink-0">
+                      <span className="mt-0.5 font-mono text-[#8f8f8f] text-xs shrink-0">
                         -
                       </span>
                       {highlight}

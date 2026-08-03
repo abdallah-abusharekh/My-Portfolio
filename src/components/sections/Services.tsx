@@ -41,10 +41,10 @@ export function Services() {
                 y: -4,
               }}
             >
-              <div className="top-[-5rem] right-[-5rem] absolute bg-[radial-gradient(circle_at_center,_rgba(115,161,177,0.28)_0%,_rgba(155,194,207,0.12)_34%,_transparent_68%)] blur-lg rounded-full w-56 h-56 opacity-0 transition-all translate-x-8 -translate-y-8 scale-75 duration-500 ease-out pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-100" />
+              <div className="top-[-5rem] right-[-5rem] absolute bg-[radial-gradient(circle_at_center,_rgba(115,161,177,0.28)_0%,_rgba(155,194,207,0.12)_34%,_transparent_68%)] opacity-0 group-hover:opacity-100 blur-lg rounded-full w-56 h-56 scale-75 group-hover:scale-100 transition-all -translate-y-8 translate-x-8 group-hover:translate-x-0 group-hover:translate-y-0 duration-500 ease-out pointer-events-none" />
 
               {/* Number */}
-              <span className="z-10 relative text-[#444] group-hover:text-bluegray-400 text-label transition-colors duration-300">
+              <span className="z-10 relative text-[#8f8f8f] text-label group-hover:text-bluegray-400 transition-colors duration-300">
                 {service.number}
               </span>
 
@@ -54,7 +54,7 @@ export function Services() {
               </h3>
 
               {/* Description */}
-              <p className="z-10 relative text-[#666] group-hover:text-bluegray-400 text-sm leading-relaxed transition-colors duration-300">
+              <p className="z-10 relative text-[#fafafa]/80 group-hover:text-bluegray-400 text-sm leading-relaxed transition-colors duration-300">
                 {service.description}
               </p>
 
@@ -63,7 +63,7 @@ export function Services() {
                 {service.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start text-[#777] group-hover:text-bluegray-300 text-sm transition-colors duration-300"
+                    className="flex items-start text-[#fafafa]/50 group-hover:text-bluegray-300 text-sm transition-colors duration-300"
                   >
                     <DotIcon />
                     {feature}
