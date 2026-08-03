@@ -22,20 +22,6 @@ export const socials: Social[] = [
     displayHandle: "in/abdallah-abusharekh",
   },
   {
-    id: "twitter",
-    platform: "Facebook",
-    handle: "@abdallah-abusharekh",
-    url: "https://www.facebook.com/abdallah.abusharekh1",
-    displayHandle: "abdallah-abusharekh",
-  },
-  {
-    id: "readcv",
-    platform: "Instagram",
-    handle: "abdallah-abusharekh",
-    url: "https://www.instagram.com/abdallah.abusharekh/",
-    displayHandle: "abdallah-abusharekh",
-  },
-  {
     id: "email",
     platform: "Email",
     handle: "abdallahabusharekh66@gmail.com",

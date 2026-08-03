@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Elsewhere */}
           <div>
-            <p className="mb-6 text-label">/ Elsewhere</p>
+            <p className="mb-6 text-label">/ connect</p>
             <ul className="space-y-3">
               {socials.map((social) => (
                 <li key={social.id}>
