@@ -1,9 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import type { CSSProperties } from "react";
 import {
+  siCss,
   siFigma,
   siFramer,
   siGit,
   siGithub,
+  siHtml5,
   siJavascript,
   siMui,
   siNextdotjs,
@@ -17,62 +20,93 @@ import {
   type SimpleIcon,
 } from "simple-icons";
 import { SectionLabel } from "../ui/SectionLabel";
-import { skillCategories, marqueeItems } from "../../data/skills";
+import { skillCategories } from "../../data/skills";
 
-const Sparkle = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="mx-4 text-bluegray-700 shrink-0"
-  >
-    <path d="M12 2L13.09 8.26L19 6L14.74 10.91L21 12L14.74 13.09L19 19L13.09 14.74L12 21L10.91 14.74L5 19L9.26 13.09L3 12L9.26 10.91L5 6L10.91 8.26L12 2Z" />
-  </svg>
-);
-
-const marqueeIcons: Record<string, SimpleIcon> = {
-  TypeScript: siTypescript,
+const toolIcons: Record<string, SimpleIcon> = {
+  HTML: siHtml5,
+  CSS: siCss,
   JavaScript: siJavascript,
+  TypeScript: siTypescript,
   React: siReact,
   "Next.js": siNextdotjs,
   "Node.js": siNodedotjs,
-  Tailwind: siTailwindcss,
-  "Material UI": siMui,
-  "shade CN": siShadcnui,
+  "Tailwind CSS": siTailwindcss,
   "Framer Motion": siFramer,
-  Figma: siFigma,
-  Swagger: siSwagger,
-  Supabase: siSupabase,
+  "Material UI": siMui,
+  "Shade CN": siShadcnui,
   Git: siGit,
   Github: siGithub,
+  Swagger: siSwagger,
+  Figma: siFigma,
+  Supabase: siSupabase,
 };
 
-function BrandIcon({ label }: { label: string }) {
-  const icon = marqueeIcons[label];
+// Per-tool brand colors, muted to a mid-tone so nothing reads as neon on dark.
+const toolAccents: Record<string, string> = {
+  HTML: "#d9724f",
+  CSS: "#4f6fd1",
+  JavaScript: "#d9c65c",
+  TypeScript: "#4a86c4",
+  React: "#5fb8d4",
+  "Next.js": "#d4d4d4",
+  "Node.js": "#6ba36a",
+  "Tailwind CSS": "#3fb8bd",
+  "Framer Motion": "#b0559e",
+  "Material UI": "#4a90d9",
+  "Shade CN": "#d4d4d4",
+  Git: "#d9614a",
+  Github: "#d4d4d4",
+  Swagger: "#8fc652",
+  Figma: "#b47fe0",
+  Supabase: "#4bbf8a",
+};
 
-  if (!icon) return null;
+const groupVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { y: 10, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.4, ease: [0.215, 0.61, 0.355, 1.0] },
+  },
+};
+
+function ToolCard({ name, accent }: { name: string; accent: string }) {
+  const icon = toolIcons[name];
 
   return (
-    <span
-      className="group/icon flex justify-center items-center bg-card hover:bg-bluegray-900 border border-border-subtle hover:border-teal/50 rounded-xl w-14 md:w-16 h-14 md:h-16 text-bluegray-500 hover:text-teal-light transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_26px_rgba(115,161,177,0.18)]"
-      aria-label={label}
-      title={label}
-    >
-      <svg
-        viewBox="0 0 24 24"
-        className="w-7 md:w-8 h-7 md:h-8 transition-transform duration-300 group-hover/icon:scale-110"
-        role="img"
-        aria-hidden="true"
+    <motion.li variants={cardVariants}>
+      <span
+        className="flex items-center gap-3 bg-card hover:bg-card-hover p-[18px] border border-border-subtle hover:border-[var(--accent)] rounded-xl h-full text-[#aaa] transition-all hover:-translate-y-0.5 duration-200"
+        style={{ "--accent": accent } as CSSProperties}
       >
-        <path d={icon.path} fill="currentColor" />
-      </svg>
-    </span>
+        {icon && (
+          <span
+            className="flex justify-center items-center rounded-lg w-[34px] h-[34px] shrink-0"
+            style={{ backgroundColor: `${accent}21` }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="w-5 h-5"
+              style={{ color: accent }}
+              role="img"
+              aria-hidden="true"
+            >
+              <path d={icon.path} fill="currentColor" />
+            </svg>
+          </span>
+        )}
+        <span className="text-sm">{name}</span>
+      </span>
+    </motion.li>
   );
 }
-
-// Duplicate items for seamless infinite loop
-const repeatedItems = [...marqueeItems, ...marqueeItems];
 
 export function Toolkit() {
   return (
@@ -86,59 +120,44 @@ export function Toolkit() {
           viewport={{ once: true, margin: "0px 0px -60px 0px" }}
           transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1.0] }}
         >
-          Tools I reach for daily.
+          Tools I reach for daily
         </motion.h2>
       </div>
 
-      {/* Marquee */}
-      <div className="my-10 py-0.5 border-[#1f1f1f] border-y overflow-hidden">
-        <div className="py-5 marquee-wrapper">
-          <div className="marquee-track">
-            {repeatedItems.map((item, i) => (
-              <span key={i} className="flex items-center shrink-0">
-                <BrandIcon label={item} />
-                <Sparkle />
-              </span>
+      {/* Toolkit grid */}
+      <div className="mx-auto mt-12 max-w-7xl">
+        <div className="relative border-[0.5px] border-border-subtle rounded-3xl overflow-hidden p-7">
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 100% 0%, rgba(115,161,177,0.07), transparent 70%)",
+            }}
+            aria-hidden="true"
+          />
+          <div className="relative gap-10 md:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {skillCategories.map((category, catIdx) => (
+              <div key={category.id}>
+                <p className="mb-5 text-[#8f8f8f] text-label">{category.title}</p>
+                <motion.ul
+                  className="gap-3 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))]"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "0px 0px -60px 0px" }}
+                  variants={groupVariants}
+                  transition={{ delayChildren: catIdx * 0.05 }}
+                >
+                  {category.items.map((item) => (
+                    <ToolCard
+                      key={item}
+                      name={item}
+                      accent={toolAccents[item]}
+                    />
+                  ))}
+                </motion.ul>
+              </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Skills grid */}
-      <div className="mx-auto mt-12 max-w-7xl">
-        <div className="gap-8 md:gap-12 grid grid-cols-2 md:grid-cols-4">
-          {skillCategories.map((category, catIdx) => (
-            <motion.div
-              key={category.id}
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: "0px 0px -60px 0px" }}
-              transition={{
-                duration: 0.6,
-                delay: catIdx * 0.1,
-                ease: [0.215, 0.61, 0.355, 1.0],
-              }}
-            >
-              <p className="mb-5 text-[#555] text-label">{category.title}</p>
-              <ul className="space-y-2.5">
-                {category.items.map((item, itemIdx) => (
-                  <motion.li
-                    key={itemIdx}
-                    className="text-[#aaa] text-sm"
-                    initial={{ x: -8, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.4,
-                      delay: catIdx * 0.08 + itemIdx * 0.05,
-                    }}
-                  >
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>
