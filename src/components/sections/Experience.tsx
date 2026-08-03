@@ -15,7 +15,7 @@ export function Experience() {
           viewport={{ once: true, margin: "0px 0px -60px 0px" }}
           transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1.0] }}
         >
-          A short timeline.
+          Where I’ve worked
         </motion.h2>
 
         {/* Timeline */}

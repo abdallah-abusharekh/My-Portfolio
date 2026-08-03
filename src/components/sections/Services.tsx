@@ -19,7 +19,7 @@ export function Services() {
           viewport={{ once: true, margin: "0px 0px -60px 0px" }}
           transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1.0] }}
         >
-          What I can help with.
+          What I can help with
         </motion.h2>
 
         <div className="gap-5 grid grid-cols-1 md:grid-cols-3">

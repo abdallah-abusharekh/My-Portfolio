@@ -130,7 +130,7 @@ export function Work() {
               viewport={{ once: true, margin: "0px 0px -60px 0px" }}
               transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1.0] }}
             >
-              Things I've shipped recently.
+              What I've been building
             </motion.h2>
           </div>
           <motion.p

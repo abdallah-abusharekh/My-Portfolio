@@ -6,41 +6,42 @@ export const profile = {
   year: 2026,
   createdSince: 2023,
   email: "abdallahabusharekh66@gmail.com",
-  availability: "Available for new projects.",
+  availability: "Available for new opportunities",
   availabilityQuarter: "Q3 2026",
-  headline: "I design and build interfaces that feel inevitable.",
+  headline: "I build interfaces that transform complexity into clarity",
   bio: [
     "I'm a frontend developer passionate about creating web experiences that are intuitive, performant, and built to last. I enjoy solving complex problems through thoughtful design and maintainable code.",
-    "Over the last three years, I've built responsive websites, SaaS platforms, and interactive dashboards using React, Next.js, and TypeScript. I care about clean architecture, accessibility, and shipping products that are built to scale and enjoyable to use.",
+    "Over the last three years, I've built responsive websites, SaaS platforms, and interactive dashboards using React, Next.js, and TypeScript. I care about clean architecture, accessibility, and products that are built to scale and enjoyable to use.",
   ],
   services: [
     {
       number: "01",
-      title: "Build Web Applications",
+      title: "Frontend Development",
       description:
-        "Production-grade web applications built with React, Next.js, and TypeScript for speed, scalability, and maintainability.",
+        "Build interfaces that hold up in production, using React, Next.js, and TypeScript for speed, scalability and maintainability in mind from the start.",
       features: [
-        "Frontend development",
-        "API integration",
-        "Performance optimization",
+        "Comfortable owning a feature end-to-end, not just a component",
+        "Writes code a team can build on, not just ship once",
       ],
     },
     {
       number: "02",
       title: "Design-to-Code",
       description:
-        "Transforming Figma designs into pixel-perfect, responsive, and accessible user interfaces.",
-      features: ["Design systems", "Responsive development", "Accessibility"],
+        "I translate designs into interfaces that match the design intent, handling the responsive and accessibility details that can get lost in translation.",
+      features: [
+        "Works closely with design rather than at a handoff distance",
+        "Catches edge cases design files don't always show",
+      ],
     },
     {
       number: "03",
-      title: "SaaS & Dashboard Development",
+      title: "Product-minded engineering",
       description:
-        "Building modern business platforms with intuitive workflows and scalable frontend architecture.",
+        "I think about the person using the interface, not just the ticket describing it, especially in multi-role, workflow-heavy products.",
       features: [
-        "Admin dashboards",
-        "Data visualization",
-        "Role-based interfaces",
+        "Experience with role-based systems, dashboards, and complex user flows",
+        "Asks what does this solve before how do I build this",
       ],
     },
   ],

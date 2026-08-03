@@ -57,7 +57,7 @@ export function Contact() {
               ease: [0.215, 0.61, 0.355, 1.0],
             }}
           >
-            Something
+            Something,
           </motion.p>
         </div>
 
@@ -85,8 +85,7 @@ export function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Available for freelance - {profile.availabilityQuarter}. Drop a line
-          and I'll reply within 24 hours.
+          Let’s connect - drop me a message anytime
         </motion.p>
 
         {/* Email CTA */}
