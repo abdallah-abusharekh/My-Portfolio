@@ -83,17 +83,18 @@ function ToolCard({ name, accent }: { name: string; accent: string }) {
   return (
     <motion.li variants={cardVariants}>
       <span
-        className="flex items-center gap-3 bg-card hover:bg-card-hover p-[18px] border border-border-subtle hover:border-[var(--accent)] rounded-xl h-full text-[#aaa] transition-all hover:-translate-y-0.5 duration-200"
+        className="flex justify-center sm:justify-start items-center gap-0 sm:gap-3 sm:bg-card sm:hover:bg-card-hover p-0 sm:p-[18px] sm:border sm:border-border-subtle sm:hover:border-[var(--accent)] rounded-xl h-full text-[#aaa] transition-all hover:-translate-y-0.5 duration-200"
         style={{ "--accent": accent } as CSSProperties}
+        aria-label={name}
       >
         {icon && (
           <span
-            className="flex justify-center items-center rounded-lg w-[34px] h-[34px] shrink-0"
+            className="flex justify-center items-center border border-border-subtle hover:border-[var(--accent)] sm:border-0 rounded-lg w-14 h-14 sm:w-[34px] sm:h-[34px] shrink-0 transition-all duration-200"
             style={{ backgroundColor: `${accent}21` }}
           >
             <svg
               viewBox="0 0 24 24"
-              className="w-5 h-5"
+              className="w-6 h-6 sm:w-5 sm:h-5"
               style={{ color: accent }}
               role="img"
               aria-hidden="true"
@@ -102,7 +103,9 @@ function ToolCard({ name, accent }: { name: string; accent: string }) {
             </svg>
           </span>
         )}
-        <span className="text-sm">{name}</span>
+        <span className="hidden sm:inline text-sm" aria-hidden="true">
+          {name}
+        </span>
       </span>
     </motion.li>
   );
@@ -126,7 +129,7 @@ export function Toolkit() {
 
       {/* Toolkit grid */}
       <div className="mx-auto mt-12 max-w-7xl">
-        <div className="relative border-[0.5px] border-border-subtle rounded-3xl overflow-hidden p-7">
+        <div className="relative p-7 border-[0.5px] border-border-subtle rounded-3xl overflow-hidden">
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -138,9 +141,11 @@ export function Toolkit() {
           <div className="relative gap-10 md:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {skillCategories.map((category, catIdx) => (
               <div key={category.id}>
-                <p className="mb-5 text-[#8f8f8f] text-label">{category.title}</p>
+                <p className="mb-5 text-[#8f8f8f] text-label">
+                  {category.title}
+                </p>
                 <motion.ul
-                  className="gap-3 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))]"
+                  className="flex flex-wrap gap-2 sm:gap-3 sm:grid sm:grid-cols-[repeat(auto-fit,minmax(150px,1fr))]"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "0px 0px -60px 0px" }}
