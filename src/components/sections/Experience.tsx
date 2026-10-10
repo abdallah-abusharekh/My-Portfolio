@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "../ui/SectionLabel";
+import { ReadMore, mobileClamp } from "../ui/ReadMore";
 import { experiences } from "../../data/experience";
 
 export function Experience() {
@@ -78,27 +79,35 @@ export function Experience() {
                   </p>
                 )}
 
-                {/* Highlights */}
-                <ul className="space-y-2 max-w-3xl">
-                  {exp.highlights.map((highlight, hi) => (
-                    <motion.li
-                      key={hi}
-                      className="flex items-start gap-3 text-[#fafafa]/80 text-sm"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.4,
-                        delay: i * 0.15 + hi * 0.07 + 0.4,
-                      }}
-                    >
-                      <span className="mt-0.5 font-mono text-[#8f8f8f] text-xs shrink-0">
-                        -
-                      </span>
-                      {highlight}
-                    </motion.li>
-                  ))}
-                </ul>
+                {/* Highlights: on mobile, only the first one until expanded */}
+                <ReadMore buttonClassName="pl-6">
+                  {(expanded) => (
+                    <ul className="space-y-2 max-w-3xl">
+                      {exp.highlights.map((highlight, hi) => (
+                        <motion.li
+                          key={hi}
+                          className={`items-start gap-3 text-[#fafafa]/80 text-sm ${
+                            expanded || hi === 0 ? "flex" : "hidden sm:flex"
+                          }`}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.4,
+                            delay: i * 0.15 + hi * 0.07 + 0.4,
+                          }}
+                        >
+                          <span className="mt-0.5 font-mono text-[#8f8f8f] text-xs shrink-0">
+                            -
+                          </span>
+                          <span className={mobileClamp(expanded)}>
+                            {highlight}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  )}
+                </ReadMore>
               </motion.div>
             ))}
           </div>
