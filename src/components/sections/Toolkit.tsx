@@ -92,31 +92,76 @@ const cardVariants: Variants = {
   },
 };
 
-function ToolCard({ name, accent }: { name: string; accent: string }) {
+// Tools shown together in one card, with their icons stacked.
+const toolStacks: Record<string, string[]> = {
+  "Git & GitHub": ["Git", "GitHub"],
+};
+
+// Tilt for each stacked icon; fans out a little further on hover.
+const stackTilts = [
+  "-rotate-[8deg] group-hover:-rotate-12",
+  "rotate-[8deg] group-hover:rotate-12 -ml-5 sm:-ml-3",
+];
+
+function ToolIcon({
+  name,
+  className = "",
+  solid = false,
+}: {
+  name: string;
+  className?: string;
+  solid?: boolean;
+}) {
   const icon = toolIcons[name];
+  const accent = toolAccents[name];
+  if (!icon) return null;
+
+  // Stacked icons overlap, so the tint sits on a solid base.
+  const tint = `${accent}21`;
+  const background = solid ? `linear-gradient(${tint}, ${tint}), #141414` : tint;
+
+  return (
+    <span
+      className={`flex justify-center items-center border border-border-subtle hover:border-[var(--accent)] rounded-lg w-14 h-14 sm:w-[34px] sm:h-[34px] shrink-0 transition-all duration-200 ${className}`}
+      style={{ background }}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        className="w-6 h-6 sm:w-5 sm:h-5"
+        style={{ color: accent }}
+        role="img"
+        aria-hidden="true"
+      >
+        <path d={icon.path} fill="currentColor" />
+      </svg>
+    </span>
+  );
+}
+
+function ToolCard({ name }: { name: string }) {
+  const stack = toolStacks[name];
+  const accent = toolAccents[stack ? stack[0] : name];
 
   return (
     <motion.li variants={cardVariants}>
       <span
-        className="flex justify-center sm:justify-start items-center gap-0 sm:gap-3 sm:bg-card sm:hover:bg-card-hover p-0 sm:p-[18px] sm:border sm:border-border-subtle sm:hover:border-[var(--accent)] rounded-xl h-full text-[#aaa] transition-all hover:-translate-y-0.5 duration-200"
+        className="group flex justify-center sm:justify-start items-center gap-0 sm:gap-3 sm:bg-card sm:hover:bg-card-hover p-0 sm:p-[18px] sm:border sm:border-border-subtle sm:hover:border-[var(--accent)] rounded-xl h-full text-[#aaa] transition-all hover:-translate-y-0.5 duration-200"
         style={{ "--accent": accent } as CSSProperties}
         aria-label={name}
       >
-        {icon && (
-          <span
-            className="flex justify-center items-center border border-border-subtle hover:border-[var(--accent)] sm:border-0 rounded-lg w-14 h-14 sm:w-[34px] sm:h-[34px] shrink-0 transition-all duration-200"
-            style={{ backgroundColor: `${accent}21` }}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="w-6 h-6 sm:w-5 sm:h-5"
-              style={{ color: accent }}
-              role="img"
-              aria-hidden="true"
-            >
-              <path d={icon.path} fill="currentColor" />
-            </svg>
+        {stack ? (
+          <span className="flex items-center shrink-0 px-1">
+            {stack.map((tool, i) => (
+              <ToolIcon
+                key={tool}
+                name={tool}
+                solid
+                className={`sm:border-card shadow-md ${stackTilts[i] ?? ""}`}
+              />
+            ))}
           </span>
+        ) : (
+          <ToolIcon name={name} className="sm:border-0" />
         )}
         <span className="hidden sm:inline text-sm" aria-hidden="true">
           {name}
@@ -168,11 +213,7 @@ export function Toolkit() {
                   transition={{ delayChildren: catIdx * 0.05 }}
                 >
                   {category.items.map((item) => (
-                    <ToolCard
-                      key={item}
-                      name={item}
-                      accent={toolAccents[item]}
-                    />
+                    <ToolCard key={item} name={item} />
                   ))}
                 </motion.ul>
               </div>

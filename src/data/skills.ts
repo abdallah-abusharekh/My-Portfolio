@@ -28,7 +28,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "tooling",
     title: "Tooling",
-    items: ["Git", "GitHub", "Swagger", "Postman", "Figma"],
+    items: ["Git & GitHub", "Swagger", "Postman", "Figma"],
   },
 ];
 
