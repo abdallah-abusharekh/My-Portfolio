@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { siGithub } from "simple-icons";
 import { SectionLabel } from "../ui/SectionLabel";
@@ -115,7 +116,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+// Projects shown before "Show more".
+const INITIAL_COUNT = 4;
+
 export function Work() {
+  const [showAll, setShowAll] = useState(false);
+  const hiddenCount = projects.length - INITIAL_COUNT;
+  const visibleProjects = showAll
+    ? projects
+    : projects.slice(0, INITIAL_COUNT);
+
   return (
     <section id="work" className="px-6 md:px-12 lg:px-20 py-28 md:py-40">
       <div className="mx-auto max-w-7xl">
@@ -145,7 +155,7 @@ export function Work() {
         </div>
 
         <div className="gap-10 grid grid-cols-1 md:grid-cols-2">
-          {projects.map((project, i) => (
+          {visibleProjects.map((project, i) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -153,6 +163,35 @@ export function Work() {
             />
           ))}
         </div>
+
+        {hiddenCount > 0 && (
+          <div className="flex justify-center mt-16">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              aria-expanded={showAll}
+              className="group inline-flex items-center gap-3 bg-bluegray-900/75 hover:bg-bluegray-900 hover:shadow-[0_0_28px_rgba(115,161,177,0.2)] px-7 py-3.5 border border-bluegray-700 hover:border-teal/60 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-light/70 font-medium text-bluegray-300 hover:text-white text-sm transition-all duration-300"
+            >
+              {showAll ? "Show less" : `Show ${hiddenCount} more`}
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+              >
+                <path
+                  d="M2 4.5L6 8.5L10 4.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
