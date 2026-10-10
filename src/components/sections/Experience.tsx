@@ -72,12 +72,14 @@ export function Experience() {
                 </p>
 
                 {/* Description */}
-                <p className="mb-4 max-w-2xl text-[#fafafa] text-sm md:text-base leading-relaxed">
-                  {exp.description}
-                </p>
+                {exp.description && (
+                  <p className="mb-4 max-w-2xl text-[#fafafa] text-sm md:text-base leading-relaxed">
+                    {exp.description}
+                  </p>
+                )}
 
                 {/* Highlights */}
-                <ul className="space-y-2">
+                <ul className="space-y-2 max-w-3xl">
                   {exp.highlights.map((highlight, hi) => (
                     <motion.li
                       key={hi}

@@ -6,55 +6,47 @@ export type Experience = {
   period: string;
   startYear: number;
   endYear: number | null;
-  description: string;
+  description?: string;
   highlights: string[];
 };
 
 export const experiences: Experience[] = [
   {
-    id: "gaza-sky-geeks-frontend-intern",
-    title: "Front-End Intern",
+    id: "masar-frontend-developer",
+    title: "Frontend Developer",
+    company: "Masar",
+    location: "Startup MVP Bootcamp",
+    period: "Aug 2026 - Sep 2026",
+    startYear: 2026,
+    endYear: 2026,
+    highlights: [
+      "Built and shipped a production-ready MVP in 8 weeks with a four-person cross-functional team. Worked in weekly delivery cycles with team reviews, aligning design and engineering and cutting scope to ship the core flow first.",
+      "Owned the front-end of Meethaq, designing a scalable, feature-based architecture with clean separation of concerns and efficient data handling, and building against API contracts agreed with the backend team.",
+    ],
+  },
+  {
+    id: "gaza-sky-geeks-frontend-engineer",
+    title: "Frontend Engineer",
     company: "Gaza Sky Geeks",
-    location: "Internship",
+    location: "Code2Career Program",
     period: "Jun 2025 - Mar 2026",
     startYear: 2025,
     endYear: 2026,
-    description:
-      "Built responsive and scalable web interfaces with React, translating design requirements into reusable UI components.",
     highlights: [
-      "Created modular React components for responsive front-end experiences.",
-      "Collaborated with a team using Git workflows, code reviews, and iterative development cycles.",
+      "Shipped responsive, pixel-perfect dashboard pages from Figma across multiple mentored projects, owning features from design handoff through code review to merge. Applied composition patterns and server-state management to keep UI consistent and data handling predictable as projects grew.",
+      "Took part in weekly code reviews and mentorship sessions with senior developers, applying feedback iteratively to strengthen component architecture and code quality. Collaborated through a shared Git workflow of feature branches, pull requests, and review-driven merges.",
     ],
   },
   {
-    id: "areisto-software-full-stack-intern",
-    title: "Full-Stack Intern",
-    company: "Areisto Software",
-    location: "Internship",
-    period: "Dec 2025 - Feb 2026",
-    startYear: 2025,
-    endYear: 2026,
-    description:
-      "Contributed to an internal management system using Next.js and Nest.js with clear front-end and back-end separation.",
-    highlights: [
-      "Implemented features following clean architecture principles.",
-      "Used GitHub branching strategies, pull requests, and peer reviews in an Agile environment.",
-      "Helped deliver maintainable, production-ready solutions across the stack.",
-    ],
-  },
-  {
-    id: "gaza-sky-geeks-advanced-react-bootcamp",
-    title: "Advanced React Bootcamp",
+    id: "gaza-sky-geeks-react-developer",
+    title: "React Developer",
     company: "Gaza Sky Geeks",
-    location: "Bootcamp",
+    location: "Advanced React Bootcamp",
     period: "Jan 2026 - Feb 2026",
     startYear: 2026,
     endYear: 2026,
-    description:
-      "Built structured front-end applications in team-based, project-driven scenarios.",
     highlights: [
-      "Applied advanced React patterns and practical state management techniques.",
-      "Focused on performance optimization and maintainable application structure.",
+      "Led a team of 4 developers through an advanced React deep-dive covering feature-based architecture, TanStack Query, design patterns, and performance techniques like lazy loading and code splitting, in a shared codebase with a branch-and-PR workflow.",
     ],
   },
 ];
