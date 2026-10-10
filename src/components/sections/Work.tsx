@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { siGithub } from "simple-icons";
 import { SectionLabel } from "../ui/SectionLabel";
 import { TechTag } from "../ui/TechTag";
+import { ReadMore, mobileClamp } from "../ui/ReadMore";
 import { projects, Project } from "../../data/projects";
 
 const ArrowIcon = () => (
@@ -51,7 +52,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       {/* Meta */}
       <div className="flex flex-col gap-3">
-        <div className="min-h-[172px]">
+        <div className="md:min-h-[172px]">
           <div className="flex justify-between items-start gap-4 mb-2">
             <div>
               <h3 className="font-bold text-white group-hover:text-[#c8dfe0] text-xl md:text-2xl transition-colors duration-300">
@@ -101,9 +102,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           </div>
 
-          <p className="max-w-xl text-[#fafafa]/80 text-sm leading-relaxed">
-            {project.description}
-          </p>
+          <ReadMore>
+            {(expanded) => (
+              <p
+                className={`max-w-xl text-[#fafafa]/80 text-sm leading-relaxed ${mobileClamp(expanded)}`}
+              >
+                {project.description}
+              </p>
+            )}
+          </ReadMore>
         </div>
 
         <div className="flex flex-wrap content-start gap-2">
