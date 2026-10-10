@@ -2,15 +2,20 @@ import { motion, type Variants } from "framer-motion";
 import type { CSSProperties } from "react";
 import {
   siCss,
+  siExpress,
   siFigma,
   siFramer,
   siGit,
   siGithub,
   siHtml5,
   siJavascript,
+  siMongodb,
   siMui,
   siNextdotjs,
   siNodedotjs,
+  siPostman,
+  siPostgresql,
+  siPrisma,
   siReact,
   siShadcnui,
   siSupabase,
@@ -30,15 +35,20 @@ const toolIcons: Record<string, SimpleIcon> = {
   React: siReact,
   "Next.js": siNextdotjs,
   "Node.js": siNodedotjs,
+  Express: siExpress,
   "Tailwind CSS": siTailwindcss,
   "Framer Motion": siFramer,
   "Material UI": siMui,
-  "Shade CN": siShadcnui,
+  "shadcn/ui": siShadcnui,
   Git: siGit,
-  Github: siGithub,
+  GitHub: siGithub,
   Swagger: siSwagger,
+  Postman: siPostman,
   Figma: siFigma,
   Supabase: siSupabase,
+  PostgreSQL: siPostgresql,
+  MongoDB: siMongodb,
+  Prisma: siPrisma,
 };
 
 // Per-tool brand colors, muted to a mid-tone so nothing reads as neon on dark.
@@ -50,15 +60,20 @@ const toolAccents: Record<string, string> = {
   React: "#5fb8d4",
   "Next.js": "#d4d4d4",
   "Node.js": "#6ba36a",
+  Express: "#d4d4d4",
   "Tailwind CSS": "#3fb8bd",
   "Framer Motion": "#b0559e",
   "Material UI": "#4a90d9",
-  "Shade CN": "#d4d4d4",
+  "shadcn/ui": "#d4d4d4",
   Git: "#d9614a",
-  Github: "#d4d4d4",
+  GitHub: "#d4d4d4",
   Swagger: "#8fc652",
+  Postman: "#d9774f",
   Figma: "#b47fe0",
   Supabase: "#4bbf8a",
+  PostgreSQL: "#5b8bd0",
+  MongoDB: "#5fa85a",
+  Prisma: "#8a9bb5",
 };
 
 const groupVariants: Variants = {
@@ -138,7 +153,7 @@ export function Toolkit() {
             }}
             aria-hidden="true"
           />
-          <div className="relative gap-10 md:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative gap-10 md:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {skillCategories.map((category, catIdx) => (
               <div key={category.id}>
                 <p className="mb-5 text-[#8f8f8f] text-label">

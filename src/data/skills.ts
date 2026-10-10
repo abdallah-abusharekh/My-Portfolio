@@ -13,17 +13,22 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "frameworks",
     title: "Frameworks",
-    items: ["React", "Next.js", "Node.js"],
+    items: ["React", "Next.js", "Node.js", "Express"],
   },
   {
     id: "styling-motion",
     title: "Styling & Motion",
-    items: ["Tailwind CSS", "Framer Motion", "Material UI", "Shade CN"],
+    items: ["Tailwind CSS", "Framer Motion", "Material UI", "shadcn/ui"],
+  },
+  {
+    id: "data",
+    title: "Data",
+    items: ["PostgreSQL", "MongoDB", "Prisma", "Supabase"],
   },
   {
     id: "tooling",
     title: "Tooling",
-    items: ["Git", "Github", "Swagger", "Figma", "Supabase"],
+    items: ["Git", "GitHub", "Swagger", "Postman", "Figma"],
   },
 ];
 
@@ -33,13 +38,18 @@ export const marqueeItems = [
   "React",
   "Next.js",
   "Node.js",
+  "Express",
   "Tailwind",
   "Material UI",
-  "shade CN",
+  "shadcn/ui",
   "Framer Motion",
+  "PostgreSQL",
+  "MongoDB",
+  "Prisma",
   "Figma",
   "Swagger",
+  "Postman",
   "Supabase",
   "Git",
-  "Github",
+  "GitHub",
 ];
