@@ -45,24 +45,4 @@ export const profile = {
       ],
     },
   ],
-  testimonials: [
-    {
-      quote:
-        "Alex turned a vague brief into the best-performing site we've ever shipped. He cares about the seams nobody else looks at.",
-      name: "Mira Okafor",
-      role: "Design Lead, Northwind Labs",
-    },
-    {
-      quote:
-        "Rare combination of taste and engineering discipline. Our design system finally feels coherent.",
-      name: "Jonas Weber",
-      role: "Co-founder, Studio Helix",
-    },
-    {
-      quote:
-        "Ships fast, communicates clearly, and the motion work is genuinely delightful.",
-      name: "Priya Raman",
-      role: "PM, Atlas Analytics",
-    },
-  ],
 };
