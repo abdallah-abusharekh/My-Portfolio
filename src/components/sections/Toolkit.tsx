@@ -100,17 +100,17 @@ const toolStacks: Record<string, string[]> = {
 // Tilt for each stacked icon; fans out a little further on hover.
 const stackTilts = [
   "-rotate-[8deg] group-hover:-rotate-12",
-  "rotate-[8deg] group-hover:rotate-12 -ml-5 sm:-ml-3",
+  "rotate-[8deg] group-hover:rotate-12 -ml-3",
 ];
 
 function ToolIcon({
   name,
+  stacked = false,
   className = "",
-  solid = false,
 }: {
   name: string;
+  stacked?: boolean;
   className?: string;
-  solid?: boolean;
 }) {
   const icon = toolIcons[name];
   const accent = toolAccents[name];
@@ -118,12 +118,17 @@ function ToolIcon({
 
   // Stacked icons overlap, so the tint sits on a solid base.
   const tint = `${accent}21`;
-  const background = solid ? `linear-gradient(${tint}, ${tint}), #141414` : tint;
+  const background = stacked
+    ? `linear-gradient(${tint}, ${tint}), #141414`
+    : tint;
+  const sizing = stacked
+    ? "w-[34px] h-[34px] border border-card shadow-md"
+    : "w-14 h-14 sm:w-[34px] sm:h-[34px] border border-border-subtle hover:border-[var(--accent)] sm:border-0";
 
   return (
     <span
-      className={`flex justify-center items-center border border-border-subtle hover:border-[var(--accent)] rounded-lg w-14 h-14 sm:w-[34px] sm:h-[34px] shrink-0 transition-all duration-200 ${className}`}
-      style={{ background }}
+      className={`flex justify-center items-center rounded-lg shrink-0 transition-all duration-200 ${sizing} ${className}`}
+      style={{ background, "--accent": accent } as CSSProperties}
     >
       <svg
         viewBox="0 0 24 24"
@@ -150,18 +155,27 @@ function ToolCard({ name }: { name: string }) {
         aria-label={name}
       >
         {stack ? (
-          <span className="flex items-center shrink-0 px-1">
-            {stack.map((tool, i) => (
-              <ToolIcon
-                key={tool}
-                name={tool}
-                solid
-                className={`sm:border-card shadow-md ${stackTilts[i] ?? ""}`}
-              />
-            ))}
-          </span>
+          <>
+            {/* Mobile: one plain tile per tool, like the rest */}
+            <span className="sm:hidden flex gap-2">
+              {stack.map((tool) => (
+                <ToolIcon key={tool} name={tool} />
+              ))}
+            </span>
+            {/* Larger screens: icons stacked in one card */}
+            <span className="hidden sm:flex items-center px-1 shrink-0">
+              {stack.map((tool, i) => (
+                <ToolIcon
+                  key={tool}
+                  name={tool}
+                  stacked
+                  className={stackTilts[i] ?? ""}
+                />
+              ))}
+            </span>
+          </>
         ) : (
-          <ToolIcon name={name} className="sm:border-0" />
+          <ToolIcon name={name} />
         )}
         <span className="hidden sm:inline text-sm" aria-hidden="true">
           {name}
