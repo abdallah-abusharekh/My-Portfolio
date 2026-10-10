@@ -12,6 +12,28 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "meethaq",
+    title: "Meethaq",
+    subtitle: "Milestone contracts and delivery platform",
+    description:
+      "Platform where freelancers and clients agree on milestone-based contracts, document every delivery, and tie each payment to the client's approval, so scope changes and payment disputes have a clear record instead of getting lost in chat.",
+    year: 2026,
+    tags: [
+      "NEXT.JS",
+      "REACT",
+      "TYPESCRIPT",
+      "TAILWIND CSS",
+      "TanStack Query",
+      "RHF",
+      "ZOD",
+      "next-intl",
+      "SignalR",
+      "Recharts",
+      "Sonner",
+    ],
+    image: "/projects/meethaq.webp",
+  },
+  {
     id: "academix",
     title: "Academix",
     subtitle: "Multi-tenant school management & assessment platform",
