@@ -10,8 +10,8 @@ import { profile } from "../../data/profile";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#toolkit" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#work" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {

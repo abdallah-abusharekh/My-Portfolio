@@ -94,8 +94,8 @@ function App() {
       <main>
         <Intro />
         <Toolkit />
-        <Work />
         <Experience />
+        <Work />
         <Services />
         <Contact />
       </main>

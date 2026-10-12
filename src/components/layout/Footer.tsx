@@ -6,6 +6,7 @@ import { ArrowIcon } from "../ui/ArrowIcon";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#toolkit" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#work" },
   { label: "Contact", href: "#contact" },
 ];

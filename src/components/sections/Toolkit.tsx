@@ -187,7 +187,7 @@ function ToolCard({ name }: { name: string }) {
 
 export function Toolkit() {
   return (
-    <section id="toolkit" className="px-6 md:px-12 lg:px-20">
+    <section id="toolkit" className="px-6 md:px-12 lg:px-20 pb-28 md:pb-40">
       <div className="mx-auto max-w-7xl">
         <SectionLabel text="Toolkit" />
         <motion.h2

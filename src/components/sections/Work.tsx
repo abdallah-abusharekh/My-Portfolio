@@ -134,7 +134,7 @@ export function Work() {
     : projects.slice(0, INITIAL_COUNT);
 
   return (
-    <section id="work" className="px-6 md:px-12 lg:px-20 py-28 md:py-40">
+    <section id="work" className="px-6 md:px-12 lg:px-20 pb-28 md:pb-40">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="flex justify-between items-center mb-12">
