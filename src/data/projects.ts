@@ -6,6 +6,8 @@ export type Project = {
   year: number;
   tags: string[];
   image: string;
+  imageWidth: number;
+  imageHeight: number;
   liveUrl?: string;
   githubUrl?: string;
 };
@@ -32,6 +34,8 @@ export const projects: Project[] = [
       "Sonner",
     ],
     image: "/projects/meethaq.webp",
+    imageWidth: 1500,
+    imageHeight: 712,
   },
   {
     id: "academix",
@@ -52,6 +56,8 @@ export const projects: Project[] = [
       "ZOD",
     ],
     image: "/projects/academix.webp",
+    imageWidth: 1500,
+    imageHeight: 712,
     liveUrl: "https://academix-edu.vercel.app",
     githubUrl: "https://github.com/academix-platform/academix",
   },
@@ -71,6 +77,8 @@ export const projects: Project[] = [
       "TanStack Query",
     ],
     image: "/projects/cure-way.webp",
+    imageWidth: 1280,
+    imageHeight: 607,
     liveUrl: "https://cure-way.vercel.app",
     githubUrl: "https://github.com/cure-way/cureway-platform",
   },
@@ -90,6 +98,8 @@ export const projects: Project[] = [
       "FULLCALENDAR",
     ],
     image: "/projects/client-portal.webp",
+    imageWidth: 1500,
+    imageHeight: 710,
     liveUrl: "https://client-portal-hub.vercel.app",
     githubUrl: "https://github.com/abdallah-abusharekh/client-portal",
   },
@@ -102,6 +112,8 @@ export const projects: Project[] = [
     year: 2026,
     tags: ["REACT", "VITE", "REDUX", "TAILWIND CSS"],
     image: "/projects/pizzana.webp",
+    imageWidth: 1500,
+    imageHeight: 716,
     liveUrl: "https://pizzana-app.vercel.app/",
     githubUrl: "https://github.com/abdallah-abusharekh/Pizzana",
   },

@@ -41,6 +41,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <img
           src={project.image}
           alt={`${project.title} project preview`}
+          width={project.imageWidth}
+          height={project.imageHeight}
+          loading="lazy"
+          decoding="async"
           className="block rounded-xl w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out"
         />
 
