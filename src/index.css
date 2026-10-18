@@ -16,7 +16,7 @@
   body {
     background-color: #0a0a0a;
     color: #ffffff;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter Variable', system-ui, sans-serif;
     overflow-x: hidden;
   }
 
@@ -41,7 +41,7 @@
 
 @layer utilities {
   .text-display {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Inter Variable', system-ui, sans-serif;
     font-size: clamp(4rem, 12vw, 13rem);
     font-weight: 700;
     line-height: 0.9;
@@ -49,7 +49,7 @@
   }
 
   .text-display-sm {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Inter Variable', system-ui, sans-serif;
     font-size: clamp(2.5rem, 6vw, 5.5rem);
     font-weight: 700;
     line-height: 1.0;
@@ -57,7 +57,7 @@
   }
 
   .text-headline {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Inter Variable', system-ui, sans-serif;
     font-size: clamp(1.75rem, 4vw, 3.5rem);
     font-weight: 700;
     line-height: 1.05;
