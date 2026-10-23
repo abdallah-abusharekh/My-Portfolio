@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode, useRef, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { profile } from "../../data/profile";
 import { socials } from "../../data/socials";
@@ -66,6 +66,13 @@ const fieldClass =
 export function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("idle");
+
+  // Hide the success message after a few seconds
+  useEffect(() => {
+    if (status !== "success") return;
+    const timer = setTimeout(() => setStatus("idle"), 4000);
+    return () => clearTimeout(timer);
+  }, [status]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
