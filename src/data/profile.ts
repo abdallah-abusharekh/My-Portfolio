@@ -10,8 +10,8 @@ export const profile = {
   availabilityQuarter: "Q3 2026",
   headline: "I build interfaces that transform complexity into clarity",
   bio: [
-    "I'm a frontend developer passionate about creating web experiences that are intuitive, performant, and built to last. I enjoy solving complex problems through thoughtful design and maintainable code.",
-    "Over the last three years, I've built responsive websites, SaaS platforms, and interactive dashboards using React, Next.js, and TypeScript. I care about clean architecture, accessibility, and products that are built to scale and enjoyable to use.",
+    "I’m a full-stack developer with a strong front-end focus, building fast, accessible, and SEO-friendly web apps with React, Next.js, and TypeScript.",
+    "I’ve worked on SaaS platforms, dashboards, and responsive websites, owning features end to end. I care about clean architecture and building products that scale and stay easy to maintain.",
   ],
   services: [
     {
