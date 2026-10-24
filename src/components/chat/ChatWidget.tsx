@@ -111,6 +111,7 @@ export function ChatWidget() {
   const reduceMotion = useReducedMotion();
 
   const panelId = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -118,6 +119,17 @@ export function ChatWidget() {
   // Focus the input whenever the panel opens
   useEffect(() => {
     if (open) inputRef.current?.focus();
+  }, [open]);
+
+  // Close when clicking or tapping anywhere outside the panel and button.
+  // Focus stays where the visitor clicked instead of jumping to the button.
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(e: PointerEvent) {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, [open]);
 
   // Keep the newest message in view
@@ -193,6 +205,7 @@ export function ChatWidget() {
 
   return (
     <div
+      ref={rootRef}
       className="right-4 sm:right-6 bottom-4 sm:bottom-6 z-[60] fixed"
       onKeyDown={(e) => {
         if (e.key === "Escape" && open) close();
