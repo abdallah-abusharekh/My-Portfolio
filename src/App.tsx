@@ -9,6 +9,7 @@ import { Work } from "./components/sections/Work";
 import { Experience } from "./components/sections/Experience";
 import { Services } from "./components/sections/Services";
 import { Contact } from "./components/sections/Contact";
+import { ChatWidget } from "./components/chat/ChatWidget";
 import { profile } from "./data/profile";
 
 function Intro() {
@@ -100,6 +101,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

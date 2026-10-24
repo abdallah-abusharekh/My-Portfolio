@@ -41,6 +41,9 @@ export default {
         'marquee': 'marquee 30s linear infinite',
         'marquee2': 'marquee2 30s linear infinite',
         'pulse-dot': 'pulseDot 2s ease-in-out infinite',
+        'breathe': 'breathe 3s ease-in-out infinite',
+        // "backwards" so the hover transform takes over once it finishes
+        'pop-in': 'popIn 0.4s ease-out 1.2s backwards',
       },
       keyframes: {
         marquee: {
@@ -54,6 +57,14 @@ export default {
         pulseDot: {
           '0%, 100%': { opacity: '1', transform: 'scale(1)' },
           '50%': { opacity: '0.4', transform: 'scale(0.8)' },
+        },
+        breathe: {
+          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+          '50%': { opacity: '0.65', transform: 'scale(1.18)' },
+        },
+        popIn: {
+          from: { opacity: '0', transform: 'scale(0.8)' },
+          to: { opacity: '1', transform: 'scale(1)' },
         },
       },
     },
