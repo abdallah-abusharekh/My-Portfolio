@@ -106,6 +106,14 @@ Theme colors (the teal/blue-gray palette), fonts and animation keyframes are def
 
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
+- Set the `GEMINI_API_KEY` environment variable in the deployment settings.
+- Deploy on a platform that supports the `/api/chat` serverless function; static-only
+  hosting such as GitHub Pages cannot run the chatbot API.
+
+The chatbot applies a best-effort in-memory limit of 10 requests per IP address per
+minute. This protects a running server instance from accidental bursts, but a
+multi-instance deployment should add platform-level or shared-store rate limiting
+for stronger quota protection.
 
 ## Contact
 

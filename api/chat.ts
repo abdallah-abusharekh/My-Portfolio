@@ -8,11 +8,16 @@ const MODELS = ["gemini-3.5-flash-lite", "gemini-3.6-flash"];
 // Per-model limit, so a slow model falls through instead of hanging
 const MODEL_TIMEOUT_MS = 12_000;
 
-// Abuse limits. Keep MAX_MESSAGE_LENGTH / MAX_HISTORY in sync with ChatWidget.tsx
-const MAX_MESSAGE_LENGTH = 500;
+// Abuse limits. Keep the user limit / MAX_HISTORY in sync with ChatWidget.tsx.
+const MAX_USER_MESSAGE_LENGTH = 500;
+// Assistant replies are sent back as history and can be longer than a user
+// message because they are generated from MAX_OUTPUT_TOKENS.
+const MAX_ASSISTANT_MESSAGE_LENGTH = 4_000;
 const MAX_HISTORY = 10;
 // Includes thinking tokens, so leave headroom above the visible reply
 const MAX_OUTPUT_TOKENS = 1024;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 10;
 
 const FALLBACK_ERROR =
   "Sorry, I couldn't reply just now. Please try again in a moment, or reach me by email at abdallahabusharekh66@gmail.com.";
@@ -20,12 +25,52 @@ const RATE_LIMIT_ERROR =
   "I'm getting a lot of questions right now. Please try again in a minute, or reach me by email at abdallahabusharekh66@gmail.com.";
 
 type IncomingMessage = { role: "user" | "assistant"; content: string };
+type RateLimitEntry = { count: number; windowStartedAt: number };
+
+const rateLimit = new Map<string, RateLimitEntry>();
 
 const json = (body: unknown, status = 200, headers: HeadersInit = {}) =>
   Response.json(body, {
     status,
     headers: { "Cache-Control": "no-store", ...headers },
   });
+
+function getClientKey(request: Request): string {
+  // Vercel and most reverse proxies provide the connecting address here.
+  // Use only the first forwarded address when running behind a proxy.
+  return (
+    request.headers.get("x-real-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "unknown"
+  );
+}
+
+function checkRateLimit(request: Request): number {
+  const now = Date.now();
+  const clientKey = getClientKey(request);
+  const current = rateLimit.get(clientKey);
+
+  if (!current || now - current.windowStartedAt >= RATE_LIMIT_WINDOW_MS) {
+    rateLimit.set(clientKey, { count: 1, windowStartedAt: now });
+  } else if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return Math.ceil(
+      (RATE_LIMIT_WINDOW_MS - (now - current.windowStartedAt)) / 1_000,
+    );
+  } else {
+    current.count += 1;
+  }
+
+  // Prevent stale entries from accumulating in long-lived server processes.
+  if (rateLimit.size > 1_000) {
+    for (const [key, entry] of rateLimit) {
+      if (now - entry.windowStartedAt >= RATE_LIMIT_WINDOW_MS) {
+        rateLimit.delete(key);
+      }
+    }
+  }
+
+  return 0;
+}
 
 function parseMessages(body: unknown): IncomingMessage[] | null {
   const raw = (body as { messages?: unknown })?.messages;
@@ -41,7 +86,11 @@ function parseMessages(body: unknown): IncomingMessage[] | null {
       return null;
     }
     const content = m.content.trim();
-    if (!content || content.length > MAX_MESSAGE_LENGTH) return null;
+    const maxLength =
+      m.role === "user"
+        ? MAX_USER_MESSAGE_LENGTH
+        : MAX_ASSISTANT_MESSAGE_LENGTH;
+    if (!content || content.length > maxLength) return null;
     messages.push({ role: m.role, content });
   }
 
@@ -57,6 +106,15 @@ export default {
       return json({ error: "Method not allowed." }, 405, { Allow: "POST" });
     }
 
+    const retryAfter = checkRateLimit(request);
+    if (retryAfter > 0) {
+      return json(
+        { error: RATE_LIMIT_ERROR },
+        429,
+        { "Retry-After": String(retryAfter) },
+      );
+    }
+
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.error("chat: GEMINI_API_KEY is not set");
@@ -67,7 +125,7 @@ export default {
     if (!messages) {
       return json(
         {
-          error: `Please send a message of up to ${MAX_MESSAGE_LENGTH} characters.`,
+          error: `Please send a message of up to ${MAX_USER_MESSAGE_LENGTH} characters.`,
         },
         400,
       );
