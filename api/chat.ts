@@ -117,7 +117,7 @@ function parseMessages(body: unknown): IncomingMessage[] | null {
 
   // Gemini expects the conversation to start with a user turn and end on one
   while (messages[0]?.role === "assistant") messages.shift();
-  if (messages.at(-1)?.role !== "user") return null;
+  if (messages[messages.length - 1]?.role !== "user") return null;
   return messages;
 }
 
