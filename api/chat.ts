@@ -115,11 +115,18 @@ function parseMessages(body: unknown): IncomingMessage[] | null {
 
   // Assistant history comes from the client and cannot be authenticated.
   const userMessages = messages.filter((message) => message.role === "user");
-  // The system prompt already contains the portfolio facts. Sending only the
-  // latest question avoids ambiguous consecutive user turns and repetition.
-  return userMessages.length > 0
-    ? [userMessages[userMessages.length - 1]]
-    : null;
+  if (userMessages.length === 0) return null;
+
+  const latest = userMessages[userMessages.length - 1].content;
+  const previous = userMessages
+    .slice(0, -1)
+    .map((message) => message.content)
+    .join("\n");
+  const prompt = previous
+    ? `Previous visitor questions for context (do not answer these again):\n${previous}\n\nLatest visitor question (answer this):\n${latest}`
+    : latest;
+
+  return [{ role: "user", content: prompt }];
 }
 
 export default {
