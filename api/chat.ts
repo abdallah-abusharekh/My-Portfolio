@@ -16,6 +16,7 @@ const MAX_ASSISTANT_MESSAGE_LENGTH = 4_000;
 const MAX_HISTORY = 10;
 // Includes thinking tokens, so leave headroom above the visible reply
 const MAX_OUTPUT_TOKENS = 1024;
+const MAX_REQUEST_BODY_BYTES = 16 * 1024;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
 
@@ -72,6 +73,26 @@ function checkRateLimit(request: Request): number {
   return 0;
 }
 
+async function parseRequestBody(
+  request: Request,
+): Promise<{ body: unknown; tooLarge: boolean }> {
+  const declaredLength = request.headers.get("content-length");
+  if (declaredLength && Number(declaredLength) > MAX_REQUEST_BODY_BYTES) {
+    return { body: null, tooLarge: true };
+  }
+
+  const bytes = await request.arrayBuffer();
+  if (bytes.byteLength > MAX_REQUEST_BODY_BYTES) {
+    return { body: null, tooLarge: true };
+  }
+
+  try {
+    return { body: JSON.parse(new TextDecoder().decode(bytes)), tooLarge: false };
+  } catch {
+    return { body: null, tooLarge: false };
+  }
+}
+
 function parseMessages(body: unknown): IncomingMessage[] | null {
   const raw = (body as { messages?: unknown })?.messages;
   if (!Array.isArray(raw) || raw.length === 0) return null;
@@ -121,7 +142,16 @@ export default {
       return json({ error: FALLBACK_ERROR }, 500);
     }
 
-    const messages = parseMessages(await request.json().catch(() => null));
+    const requestBody = await parseRequestBody(request);
+    if (requestBody.tooLarge) {
+      return json(
+        { error: "Request body is too large." },
+        413,
+        { "Content-Type": "application/json" },
+      );
+    }
+
+    const messages = parseMessages(requestBody.body);
     if (!messages) {
       return json(
         {

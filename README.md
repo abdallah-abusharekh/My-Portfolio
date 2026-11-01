@@ -113,7 +113,8 @@ Theme colors (the teal/blue-gray palette), fonts and animation keyframes are def
 The chatbot applies a best-effort in-memory limit of 10 requests per IP address per
 minute. This protects a running server instance from accidental bursts, but a
 multi-instance deployment should add platform-level or shared-store rate limiting
-for stronger quota protection.
+for stronger quota protection. Chat requests are also limited to 16 KiB before
+JSON parsing.
 
 ## Contact
 
