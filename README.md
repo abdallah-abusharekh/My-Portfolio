@@ -73,6 +73,8 @@ My-Portfolio/
 ## Customizing Content
 
 All content lives in `src/data/`, so you can change the site without editing components:
+The chatbot context is generated from the same profile, skills, experience, projects,
+and social data.
 
 | File                     | What it controls                                                  |
 | ------------------------ | ----------------------------------------------------------------- |
