@@ -10,9 +10,6 @@ const MODEL_TIMEOUT_MS = 12_000;
 
 // Abuse limits. Keep the user limit / MAX_HISTORY in sync with ChatWidget.tsx.
 const MAX_USER_MESSAGE_LENGTH = 500;
-// Assistant replies are sent back as history and can be longer than a user
-// message because they are generated from MAX_OUTPUT_TOKENS.
-const MAX_ASSISTANT_MESSAGE_LENGTH = 4_000;
 const MAX_HISTORY = 10;
 // Includes thinking tokens, so leave headroom above the visible reply
 const MAX_OUTPUT_TOKENS = 1024;
@@ -107,18 +104,18 @@ function parseMessages(body: unknown): IncomingMessage[] | null {
       return null;
     }
     const content = m.content.trim();
-    const maxLength =
-      m.role === "user"
-        ? MAX_USER_MESSAGE_LENGTH
-        : MAX_ASSISTANT_MESSAGE_LENGTH;
-    if (!content || content.length > maxLength) return null;
+    if (
+      !content ||
+      (m.role === "user" && content.length > MAX_USER_MESSAGE_LENGTH)
+    ) {
+      return null;
+    }
     messages.push({ role: m.role, content });
   }
 
-  // Gemini expects the conversation to start with a user turn and end on one
-  while (messages[0]?.role === "assistant") messages.shift();
-  if (messages[messages.length - 1]?.role !== "user") return null;
-  return messages;
+  // Assistant history comes from the client and cannot be authenticated.
+  const userMessages = messages.filter((message) => message.role === "user");
+  return userMessages.length > 0 ? userMessages : null;
 }
 
 export default {
@@ -162,7 +159,7 @@ export default {
     }
 
     const contents: Content[] = messages.map((m) => ({
-      role: m.role === "assistant" ? "model" : "user",
+      role: "user",
       parts: [{ text: m.content }],
     }));
 
