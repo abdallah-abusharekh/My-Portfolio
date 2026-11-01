@@ -115,7 +115,11 @@ function parseMessages(body: unknown): IncomingMessage[] | null {
 
   // Assistant history comes from the client and cannot be authenticated.
   const userMessages = messages.filter((message) => message.role === "user");
-  return userMessages.length > 0 ? userMessages : null;
+  // The system prompt already contains the portfolio facts. Sending only the
+  // latest question avoids ambiguous consecutive user turns and repetition.
+  return userMessages.length > 0
+    ? [userMessages[userMessages.length - 1]]
+    : null;
 }
 
 export default {
